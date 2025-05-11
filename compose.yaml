@@ -1,7 +1,7 @@
 services:
-  linebot-project1:
-    image: linebot-openai-agent:latest
-    container_name: linebot-openai-agent-local
+  linebot-agent-project:
+    image: linebot-agent-project:latest
+    container_name: linebot-agent-project
     ports:
       - 8001:8001
     volumes:

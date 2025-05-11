@@ -1,7 +1,7 @@
 services:
-  linebot-openai-agent:
-    image: linebot-openai-agent:latest
-    container_name: linebot-openai-agent
+  linebot-agent-project:
+    image: linebot-agent-project:latest
+    container_name: linebot-agent-project
     build:
       context: .    
     ports:
