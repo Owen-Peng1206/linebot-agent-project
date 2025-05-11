@@ -27,7 +27,9 @@ This project is an intelligent customer service system built on the LINE platfor
 ## Setup
 
 1. Clone the repository to your local machine.
-    git clone https://
+   ```
+   git clone https://github.com/Owen-Peng1206/linebot-agent-project.git
+   ```
 2. Setting your environment variables:
 
    ```.env
