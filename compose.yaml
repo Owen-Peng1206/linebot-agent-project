@@ -1,0 +1,30 @@
+services:
+  linebot-project1:
+    image: linebot-openai-agent:latest
+    container_name: linebot-openai-agent-local
+    ports:
+      - 8001:8001
+    volumes:
+      - ./data:/data      
+    environment:
+        ChannelSecret : ${ChannelSecret}
+        ChannelAccessToken : ${ChannelAccessToken}
+        WEATHERMAP_API_KEY : ${WEATHERMAP_API_KEY}
+        COMFYUI_WS_ENDPOINT : ${COMFYUI_WS_ENDPOINT}
+        LLM_BASE_URL : ${LLM_BASE_URL}
+        LLM_API_KEY : ${LLM_API_KEY}
+        LLM_MODEL_NAME : ${LLM_MODEL_NAME}
+        REDIS_HOST_ADDRESS : ${REDIS_HOST_ADDRESS}
+        REDIS_HOST_PORT : ${REDIS_HOST_PORT}
+        LINE_CHAT_HISTORY_LENGTH : ${LINE_CHAT_HISTORY_LENGTH}
+        GOOGLE_API_KEY : ${GOOGLE_API_KEY} #your_google_api_key
+        GOOGLE_CX : ${GOOGLE_CX} #your_custom_search_engine_id
+        SEARCH_ENGINE : ${SEARCH_ENGINE}  # or "duckduckgo" "google"   
+        AWS_ACCESS_KEY_ID : ${AWS_ACCESS_KEY_ID}
+        AWS_SECRET_ACCESS_KEY : ${AWS_SECRET_ACCESS_KEY}
+        AWS_S3_URL_API : ${AWS_S3_URL_API}
+        AWS_S3_URL_WEBUI : ${AWS_S3_URL_WEBUI}
+        AWS_S3_BUCKET  : ${AWS_S3_BUCKET}             
+        COMFYUI_WORKFLOW_PATH : ${COMFYUI_WORKFLOW_PATH}     
+    restart: on-failure:5	      
+    network_mode: host

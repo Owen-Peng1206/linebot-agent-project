@@ -1,0 +1,8 @@
+.git
+.vscode
+.venv
+.pytest_cache
+.devcontainer
+.continue
+mcp_servers
+__pycache__

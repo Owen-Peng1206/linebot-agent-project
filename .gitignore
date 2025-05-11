@@ -1,0 +1,5 @@
+*.bak
+.DS_Store
+.vscode
+.devcontainer
+__pycache__

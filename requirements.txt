@@ -1,0 +1,13 @@
+line-bot-sdk
+fastapi
+uvicorn[standard]
+openai-agents
+pydantic
+tiktoken
+Pillow
+requests
+redis
+typing
+aioredis
+beautifulsoup4
+boto3
