@@ -99,9 +99,9 @@ This project is an intelligent customer service system built on the LINE platfor
 
 ### Local development
 
-    ```bash
-    uvicorn main:app --reload --host=0.0.0.0 --port=8001
-    ```
+```bash
+  uvicorn main:app --reload --host=0.0.0.0 --port=8001
+```
 
 ### Docker depoly
 
@@ -154,7 +154,7 @@ compose.yaml example:
             REDIS_HOST_ADDRESS : ${REDIS_HOST_ADDRESS}
             REDIS_HOST_PORT : ${REDIS_HOST_PORT}
             LINE_CHAT_HISTORY_LENGTH : ${LINE_CHAT_HISTORY_LENGTH}
-            GOOGLE_API_KEY : ${GOOGLE_API_KEY} #your_google_api_key
+            GOOGLE_API_KEY : ${GOOGLE_API_KEY} #your_google_searcg_api_key
             GOOGLE_CX : ${GOOGLE_CX} #your_custom_search_engine_id
             SEARCH_ENGINE : ${SEARCH_ENGINE}  # or "duckduckgo" "google"   
             AWS_ACCESS_KEY_ID : ${AWS_ACCESS_KEY_ID}
