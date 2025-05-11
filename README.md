@@ -4,6 +4,17 @@
 
 This project is an intelligent customer service system built on the LINE platform, integrating FastAPI, OpenAI models, and various tools. It uses Redis to store conversation history, supports natural language processing, weather information queries, image generation, and other multi-functional interactions.
 
+
+## Demo
+
+- Get weather
+
+![Get weather.](https://github.com/Owen-Peng1206/linebot-agent-project/blob/main/image/4ddc83c16c6601.gif?raw=true "Get weather.")
+
+- Generate image
+
+![Generate image.](https://github.com/Owen-Peng1206/linebot-agent-project/blob/main/image/4327111ec97a36.gif?raw=true "Generate image.")
+
 ## Features
 
 - **Real-time conversation handling (supports clearing chat history)**  
