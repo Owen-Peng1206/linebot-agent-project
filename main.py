@@ -116,7 +116,7 @@ async def handle_callback(request: Request):
         if user_msg_tokens > MAX_TOKENS:
             await line_bot_api.reply_message(
                 event.reply_token,
-                TextSendMessage(text=f"提示過長 ({user_msg_tokens} tokens > {MAX_TOKENS} tokens). 請簡化提示。")
+                TextSendMessage(text=f"Prompt too long ({user_msg_tokens} tokens > {MAX_TOKENS} tokens). Please simplify the prompt.")
             )
             return "OK"
 
@@ -148,7 +148,7 @@ async def handle_callback(request: Request):
         if len(history) > int(LINE_CHAT_HISTORY_LENGTH):
             history = history[-int(LINE_CHAT_HISTORY_LENGTH):]
 
-        redis_client.setex(get_conversation_key(user_id), 86400, json.dumps(history))  # 1天後自動刪除
+        redis_client.setex(get_conversation_key(user_id), 86400, json.dumps(history))  # Automatically delete after 1 day
 
         # Check for MinIO URLs in the response and send them
         pattern_str = fr'{MINIO_URL_API}/.+?\.png'
