@@ -125,9 +125,9 @@ Dockfile example:
 compose.yaml example:
 ```yaml
     services:
-    linebot-project1:
-        image: linebot-openai-agent:latest
-        container_name: linebot-openai-agent-local
+    linebot-agent-project:
+        image: linebot-agent-project:latest
+        container_name: linebot-agent-project
         ports:
         - 8001:8001
         volumes:
@@ -160,9 +160,9 @@ compose.yaml example:
 docker-compose.yaml example:
 ```yaml
     services:
-    linebot-openai-agent:
-        image: linebot-openai-agent:latest
-        container_name: linebot-openai-agent
+    linebot-agent-project:
+        image: linebot-agent-project:latest
+        container_name: linebot-agent-project
         build:
         context: .    
         ports:
@@ -248,7 +248,7 @@ networks:
 3. tag your image
 
    ```bash
-   docker tag linebot-openai-agent:latest hub.YOUR_REGISTRY/linebot-agent-project:latest
+   docker tag linebot-agent-project:latest hub.YOUR_REGISTRY/linebot-agent-project:latest
    ```   
 
 4. Push your image
