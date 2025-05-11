@@ -7,6 +7,10 @@ This project is an intelligent customer service system built on the LINE platfor
 
 ## Demo
 
+- Chat
+
+![Chat.](https://github.com/Owen-Peng1206/linebot-agent-project/blob/main/image/4230b44fc4e4a2.gif?raw=true "Chat.")
+
 - Get weather
 
 ![Get weather.](https://github.com/Owen-Peng1206/linebot-agent-project/blob/main/image/4ddc83c16c6601.gif?raw=true "Get weather.")
@@ -46,14 +50,15 @@ This project is an intelligent customer service system built on the LINE platfor
    ```.env
     ChannelSecret="YOUR_LINE_CHANNEL_SECRET"
     ChannelAccessToken="YOUR_LINE_CHANNEL_ACCESS_TOKEN"
+    LINE_CHAT_HISTORY_LENGTH="YOUR_LINE_CHAT_HISTORY_LENGTH" # e.g. 100    
     WEATHERMAP_API_KEY="YOUR_OPENWEATHERMAP_API_KEY"
     COMFYUI_WS_ENDPOINT="http://YOUR.COMFYUI.ADDRESS:PORT"
+    COMFYUI_WORKFLOW_PATH="YOUR_COMFYUI_WORKFLOW_PATH" # e.g. data/COMFYUI_WORKFLOW.json    
     LLM_BASE_URL="YOUR_LLM_BASE_URL" # e.g. https://XXXLLM.YOUR_URL/openai/  
     LLM_API_KEY="YOUR_LLM_API_KEY" # e.g. sk-366df9446d3247e4b1107898ab25d5b5
     LLM_MODEL_NAME="YOUR_LLM_MODEL_NAME" # e.g. qwen3-30b-a3b
     REDIS_HOST_ADDRESS="YOUR.REDIS.HOST.ADDRESS" # e.g.192.168.50.100
     REDIS_HOST_PORT="YOUR.REDIS.HOST.PORT" # e.g. 6379
-    LINE_CHAT_HISTORY_LENGTH="YOUR_LINE_CHAT_HISTORY_LENGTH" # e.g. 100
     GOOGLE_API_KEY="YOUR_GOOGLESEARCH_API_KEY" #your_google_api_key
     GOOGLE_CX="YOUR_GOOGLESEARCH_ENGINE_ID" #your_custom_search_engine_id
     SEARCH_ENGINE="YOUR_SEARCH_ENGINE"  # or "duckduckgo" "google"
@@ -62,7 +67,6 @@ This project is an intelligent customer service system built on the LINE platfor
     AWS_S3_URL_API="YOUR_AWS_S3_URL_API" # e.g. https://XXXAWS.YOUR_URL:443
     AWS_S3_URL_WEBUI="YOUR_AWS_S3_URL_WEBUI" # e.g. https://XXXAWS.YOUR_URL
     AWS_S3_BUCKET ="YOUR_AWS_S3_BUCKET" # e.g. image    
-    COMFYUI_WORKFLOW_PATH="YOUR_COMFYUI_WORKFLOW_PATH" # e.g. data/COMFYUI_WORKFLOW.json
    ```
 
 3. Install necessory packages:
@@ -146,14 +150,15 @@ compose.yaml example:
         environment:
             ChannelSecret : ${ChannelSecret}
             ChannelAccessToken : ${ChannelAccessToken}
+            LINE_CHAT_HISTORY_LENGTH : ${LINE_CHAT_HISTORY_LENGTH}            
             WEATHERMAP_API_KEY : ${WEATHERMAP_API_KEY}
             COMFYUI_WS_ENDPOINT : ${COMFYUI_WS_ENDPOINT}
+            COMFYUI_WORKFLOW_PATH : ${COMFYUI_WORKFLOW_PATH}              
             LLM_BASE_URL : ${LLM_BASE_URL}
             LLM_API_KEY : ${LLM_API_KEY}
             LLM_MODEL_NAME : ${LLM_MODEL_NAME}
             REDIS_HOST_ADDRESS : ${REDIS_HOST_ADDRESS}
             REDIS_HOST_PORT : ${REDIS_HOST_PORT}
-            LINE_CHAT_HISTORY_LENGTH : ${LINE_CHAT_HISTORY_LENGTH}
             GOOGLE_API_KEY : ${GOOGLE_API_KEY} #your_google_searcg_api_key
             GOOGLE_CX : ${GOOGLE_CX} #your_custom_search_engine_id
             SEARCH_ENGINE : ${SEARCH_ENGINE}  # or "duckduckgo" "google"   
@@ -161,8 +166,7 @@ compose.yaml example:
             AWS_SECRET_ACCESS_KEY : ${AWS_SECRET_ACCESS_KEY}
             AWS_S3_URL_API : ${AWS_S3_URL_API}
             AWS_S3_URL_WEBUI : ${AWS_S3_URL_WEBUI}
-            AWS_S3_BUCKET  : ${AWS_S3_BUCKET}             
-            COMFYUI_WORKFLOW_PATH : ${COMFYUI_WORKFLOW_PATH}     
+            AWS_S3_BUCKET  : ${AWS_S3_BUCKET}                
         restart: on-failure:5	      
         network_mode: host
 ```
@@ -183,14 +187,15 @@ docker-compose.yaml example:
         environment:
             ChannelSecret : ${ChannelSecret}
             ChannelAccessToken : ${ChannelAccessToken}
+            LINE_CHAT_HISTORY_LENGTH : ${LINE_CHAT_HISTORY_LENGTH}            
             WEATHERMAP_API_KEY : ${WEATHERMAP_API_KEY}
             COMFYUI_WS_ENDPOINT : ${COMFYUI_WS_ENDPOINT}
+            COMFYUI_WORKFLOW_PATH : ${COMFYUI_WORKFLOW_PATH}                  
             LLM_BASE_URL : ${LLM_BASE_URL}
             LLM_API_KEY : ${LLM_API_KEY}
             LLM_MODEL_NAME : ${LLM_MODEL_NAME}
             REDIS_HOST_ADDRESS : ${REDIS_HOST_ADDRESS}
             REDIS_HOST_PORT : ${REDIS_HOST_PORT}
-            LINE_CHAT_HISTORY_LENGTH : ${LINE_CHAT_HISTORY_LENGTH}
             GOOGLE_API_KEY : ${GOOGLE_API_KEY} #your_google_api_key
             GOOGLE_CX : ${GOOGLE_CX} #your_custom_search_engine_id
             SEARCH_ENGINE : ${SEARCH_ENGINE}  # or "duckduckgo" "google"   
@@ -199,7 +204,7 @@ docker-compose.yaml example:
             AWS_S3_URL_API : ${AWS_S3_URL_API}
             AWS_S3_URL_WEBUI : ${AWS_S3_URL_WEBUI}
             AWS_S3_BUCKET  : ${AWS_S3_BUCKET}             
-            COMFYUI_WORKFLOW_PATH : ${COMFYUI_WORKFLOW_PATH}            
+      
         restart: on-failure:5
 ```
 
