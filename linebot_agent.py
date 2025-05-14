@@ -9,18 +9,18 @@ from linebot_tools import web_search_tool, web_scrape_tool, UserInfo
 from agents import Agent, OpenAIChatCompletionsModel, Runner, set_tracing_disabled
 
 # OpenAI Agent configuration
-LLM_BASE_URL = os.getenv("LLM_BASE_URL") or ""
-LLM_API_KEY = os.getenv("LLM_API_KEY") or ""
-LLM_MODEL_NAME = os.getenv("LLM_MODEL_NAME") or ""
+OPENAI_BASE_URL = os.getenv("OPENAI_COMPATIBLE_API_BASE_URL") or ""
+OPENAI_API_KEY = os.getenv("OPENAI_COMPATIBLE_API_KEY") or ""
+OPENAI_MODEL_NAME = os.getenv("OPENAI_COMPATIBLE_API_MODEL_NAME") or ""
 
 # Validate environment variables
-if not LLM_BASE_URL or not LLM_API_KEY or not LLM_MODEL_NAME :
+if not OPENAI_BASE_URL or not OPENAI_API_KEY or not OPENAI_MODEL_NAME :
     raise ValueError(
-        "Please set LLM_BASE_URL, LLM_API_KEY,LLM_MODEL_NAME via env var or code."
+        "Please set OPENAI_BASE_URL, OPENAI_API_KEY,OPENAI_MODEL_NAME via env var or code."
     )
 
 # Initialize OpenAI client
-client = AsyncOpenAI(base_url=LLM_BASE_URL, api_key=LLM_API_KEY)
+client = AsyncOpenAI(base_url=OPENAI_BASE_URL, api_key=OPENAI_API_KEY)
 set_tracing_disabled(disabled=True)
 
 
@@ -37,7 +37,7 @@ async def generate_text_with_agent(history: List[Dict], reply_token: str):
             "if you decide to use the get_weather() function, please translate the city name to english and Enhance the formatting of the weather forecast and add weather icons." \
             "Please refer to the conversation history to provide a coherent and natural response.",
         model=OpenAIChatCompletionsModel(
-            model=LLM_MODEL_NAME, openai_client=client),
+            model=OPENAI_MODEL_NAME, openai_client=client),
         tools=[get_weather, 
                translate_to_chinese, 
                translate_to_english, 

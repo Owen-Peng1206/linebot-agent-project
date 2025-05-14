@@ -19,8 +19,8 @@ from linebot_tools import MINIO_URL_API
 import re  # New import for URL pattern matching
 
 # LINE Bot configuration
-LINE_CHANNEL_SECRET = os.getenv('ChannelSecret', None)
-LINE_CHANNEL_ACCESS_TOKEN = os.getenv('ChannelAccessToken', None)
+LINE_CHANNEL_SECRET = os.getenv('LINE_CHANNEL_SECRET', None)
+LINE_CHANNEL_ACCESS_TOKEN = os.getenv('LINE_CHANNEL_ACCESS_TOKEN', None)
 LINE_CHAT_HISTORY_LENGTH = os.getenv("LINE_CHAT_HISTORY_LENGTH") or "41"
 
 # REDIS SERVER configuration

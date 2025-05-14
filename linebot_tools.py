@@ -23,27 +23,27 @@ OPENWEATHERMAP_API_KEY = os.getenv("WEATHERMAP_API_KEY") or ""
 
 # Configuration Search tool from environment variables
 search_engine = os.getenv("SEARCH_ENGINE", "duckduckgo").lower()
-google_api_key = os.getenv("GOOGLE_API_KEY")
+google_api_key = os.getenv("GOOGLE_SEARCH_API_KEY")
 google_cx = os.getenv("GOOGLE_CX")
 
 # comfyUI configuration
 client_id = str(uuid.uuid4())
 COMFYUI_API_URL =  os.getenv("COMFYUI_WS_ENDPOINT")  # replace to your ComfyUI API URL
 COMFYUI_CLIENT_ID = client_id  
-MINIO_URL_API = os.getenv("AWS_S3_URL_API") 
-MINIO_URL_WEBUI = os.getenv("AWS_S3_URL_WEBUI")
-MINIO_BUCKET = os.getenv("AWS_S3_BUCKET") 
-MINIO_ACCESS_KEY = os.getenv("AWS_ACCESS_KEY_ID")  
-MINIO_SECRET_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
+MINIO_URL_API = os.getenv("MINIO_URL_API") 
+MINIO_URL_WEBUI = os.getenv("MINIO_URL_WEBUI")
+MINIO_BUCKET = os.getenv("MINIO_BUCKET") 
+MINIO_ACCESS_KEY = os.getenv("MINIO_ACCESS_KEY")  
+MINIO_SECRET_KEY = os.getenv("MINIO_SECRET_KEY")
 MINIO_region_name = "us-east-1"
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-if not OPENWEATHERMAP_API_KEY:
-    raise ValueError(
-        "Please set WEATHERMAP_API_KEY via env var or code."
-    )
+# if not OPENWEATHERMAP_API_KEY:
+#     raise ValueError(
+#         "Please set WEATHERMAP_API_KEY via env var or code."
+#     )
 
 @function_tool
 def web_scrape_tool(url: str):

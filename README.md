@@ -1,4 +1,4 @@
-# Linebot agent project (LINE Bot + FastAPI + OpenAI agent python SDK)
+# Linebot agent project (LINE Bot API + FastAPI + OpenAI agent python)
 
 ## Project Description
 
@@ -32,7 +32,7 @@ This project is an intelligent customer service system built on the LINE platfor
 
 - __LINE Messaging API__ - The Line Messaging API establishes bidirectional communication between developer services and LINE users.
 - __FastAPI__ - Handles LINE Bot Webhook  
-- __OpenAI Agent framework__ - Intelligent conversation engine  
+- __OpenAI Agents python framework__ - Intelligent conversation engine  
 - __Redis__ - Conversation history storage and management  
 - __ComfyUI__ - Image generation service  
 - __Aiohttp__ - Asynchronous HTTP client  
@@ -48,25 +48,25 @@ This project is an intelligent customer service system built on the LINE platfor
 2. Setting your environment variables:
 
    ```.env
-    ChannelSecret="YOUR_LINE_CHANNEL_SECRET"
-    ChannelAccessToken="YOUR_LINE_CHANNEL_ACCESS_TOKEN"
-    LINE_CHAT_HISTORY_LENGTH="YOUR_LINE_CHAT_HISTORY_LENGTH" # e.g. 100    
-    WEATHERMAP_API_KEY="YOUR_OPENWEATHERMAP_API_KEY"
-    COMFYUI_WS_ENDPOINT="http://YOUR.COMFYUI.ADDRESS:PORT"
-    COMFYUI_WORKFLOW_PATH="YOUR_COMFYUI_WORKFLOW_PATH" # e.g. data/COMFYUI_WORKFLOW.json    
-    LLM_BASE_URL="YOUR_LLM_BASE_URL" # e.g. https://XXXLLM.YOUR_URL/openai/  
-    LLM_API_KEY="YOUR_LLM_API_KEY" # e.g. sk-366df9446d3247e4b1107898ab25d5b5
-    LLM_MODEL_NAME="YOUR_LLM_MODEL_NAME" # e.g. qwen3-30b-a3b
-    REDIS_HOST_ADDRESS="YOUR.REDIS.HOST.ADDRESS" # e.g.192.168.50.100
-    REDIS_HOST_PORT="YOUR.REDIS.HOST.PORT" # e.g. 6379
-    GOOGLE_API_KEY="YOUR_GOOGLESEARCH_API_KEY" #your_google_api_key
-    GOOGLE_CX="YOUR_GOOGLESEARCH_ENGINE_ID" #your_custom_search_engine_id
-    SEARCH_ENGINE="YOUR_SEARCH_ENGINE"  # or "duckduckgo" "google"
-    AWS_ACCESS_KEY_ID="YOUR_AWS_ACCESS_KEY_ID" # e.g. 23TUJDWEJLKFRFGSBVSFGS
-    AWS_SECRET_ACCESS_KEY="YOUR_AWS_SECRET_ACCESS_KEY" # e.g. cbci00kwhYiuIpIX0kWLKLJDHUGDFBKSdobT
-    AWS_S3_URL_API="YOUR_AWS_S3_URL_API" # e.g. https://XXXAWS.YOUR_URL:443
-    AWS_S3_URL_WEBUI="YOUR_AWS_S3_URL_WEBUI" # e.g. https://XXXAWS.YOUR_URL
-    AWS_S3_BUCKET ="YOUR_AWS_S3_BUCKET" # e.g. image    
+   LINE_CHANNEL_SECRET="YOUR_LINE_CHANNEL_SECRET"
+   LINE_CHANNEL_ACCESS_TOKEN="YOUR_LINE_CHANNEL_ACCESS_TOKEN"
+   LINE_CHAT_HISTORY_LENGTH="YOUR_LINE_CHAT_HISTORY_LENGTH" # e.g. 100
+   WEATHERMAP_API_KEY="YOUR_OPENWEATHERMAP_API_KEY"
+   COMFYUI_WS_ENDPOINT="http://YOUR.COMFYUI.ADDRESS:PORT"
+   COMFYUI_WORKFLOW_PATH="YOUR_COMFYUI_WORKFLOW_PATH" # e.g. data/COMFYUI_WORKFLOW.json
+   OPENAI_COMPATIBLE_API_BASE_URL="YOUR_LLM_BASE_URL" # e.g. https://XXXLLM.YOUR_URL/openai/  
+   OPENAI_COMPATIBLE_API_KEY="YOUR_LLM_API_KEY" # e.g. sk-366df9446d3247e4b1107898ab25d5b5
+   OPENAI_COMPATIBLE_API_MODEL_NAME="YOUR_LLM_MODEL_NAME" # e.g. qwen3-30b-a3b
+   REDIS_HOST_ADDRESS="YOUR.REDIS.HOST.ADDRESS" # e.g.192.168.50.100
+   REDIS_HOST_PORT="YOUR.REDIS.HOST.PORT" # e.g. 6379
+   GOOGLE_SEARCH_API_KEY="YOUR_GOOGLE_SEARCH_API_KEY" #your_google_api_key
+   GOOGLE_CX="YOUR_GOOGLESEARCH_ENGINE_ID" #your_custom_search_engine_id
+   SEARCH_ENGINE="YOUR_SEARCH_ENGINE"  # or "duckduckgo" "google"
+   MINIO_ACCESS_KEY="YOUR_MINIO_ACCESS_KEY" # e.g. 23TUJDWEJLKFRFGSBVSFGS
+   MINIO_SECRET_KEY="YOUR_MINIO_SECRET_KEY" # e.g. cbci00kwhYiuIpIX0kWLKLJDHUGDFBKSdobT
+   MINIO_URL_API="YOUR_MINIO_URL_API" # e.g. https://XXXAWS.YOUR_URL:443
+   MINIO_URL_WEBUI="YOUR_MINIO_URL_WEBUI" # e.g. https://XXXAWS.YOUR_URL
+   MINIO_BUCKET="YOUR_MINIO_BUCKET" # e.g. image    
    ```
 
 3. Install necessory packages:
@@ -148,25 +148,25 @@ compose.yaml example:
         volumes:
         - ./data:/data      
         environment:
-            ChannelSecret : ${ChannelSecret}
-            ChannelAccessToken : ${ChannelAccessToken}
-            LINE_CHAT_HISTORY_LENGTH : ${LINE_CHAT_HISTORY_LENGTH}            
+            LINE_CHANNEL_SECRET : ${LINE_CHANNEL_SECRET}
+            LINE_CHANNEL_ACCESS_TOKEN : ${LINE_CHANNEL_ACCESS_TOKEN}
+            LINE_CHAT_HISTORY_LENGTH : ${LINE_CHAT_HISTORY_LENGTH}
             WEATHERMAP_API_KEY : ${WEATHERMAP_API_KEY}
             COMFYUI_WS_ENDPOINT : ${COMFYUI_WS_ENDPOINT}
-            COMFYUI_WORKFLOW_PATH : ${COMFYUI_WORKFLOW_PATH}              
-            LLM_BASE_URL : ${LLM_BASE_URL}
-            LLM_API_KEY : ${LLM_API_KEY}
-            LLM_MODEL_NAME : ${LLM_MODEL_NAME}
+            COMFYUI_WORKFLOW_PATH : ${COMFYUI_WORKFLOW_PATH}            
+            OPENAI_COMPATIBLE_API_BASE_URL : ${OPENAI_COMPATIBLE_API_BASE_URL}
+            OPENAI_COMPATIBLE_API_KEY : ${OPENAI_COMPATIBLE_API_KEY}
+            OPENAI_COMPATIBLE_API_MODEL_NAME : ${OPENAI_COMPATIBLE_API_MODEL_NAME}
             REDIS_HOST_ADDRESS : ${REDIS_HOST_ADDRESS}
             REDIS_HOST_PORT : ${REDIS_HOST_PORT}
-            GOOGLE_API_KEY : ${GOOGLE_API_KEY} #your_google_searcg_api_key
+            GOOGLE_SEARCH_API_KEY : ${GOOGLE_SEARCH_API_KEY} #your_google_api_key
             GOOGLE_CX : ${GOOGLE_CX} #your_custom_search_engine_id
             SEARCH_ENGINE : ${SEARCH_ENGINE}  # or "duckduckgo" "google"   
-            AWS_ACCESS_KEY_ID : ${AWS_ACCESS_KEY_ID}
-            AWS_SECRET_ACCESS_KEY : ${AWS_SECRET_ACCESS_KEY}
-            AWS_S3_URL_API : ${AWS_S3_URL_API}
-            AWS_S3_URL_WEBUI : ${AWS_S3_URL_WEBUI}
-            AWS_S3_BUCKET  : ${AWS_S3_BUCKET}                
+            MINIO_ACCESS_KEY : ${MINIO_ACCESS_KEY}
+            MINIO_SECRET_KEY : ${MINIO_SECRET_KEY}
+            MINIO_URL_API : ${MINIO_URL_API}
+            MINIO_URL_WEBUI : ${MINIO_URL_WEBUI}
+            MINIO_BUCKET  : ${MINIO_BUCKET}                
         restart: on-failure:5	      
         network_mode: host
 ```
@@ -185,26 +185,25 @@ docker-compose.yaml example:
         volumes:
         - ./data:/data          
         environment:
-            ChannelSecret : ${ChannelSecret}
-            ChannelAccessToken : ${ChannelAccessToken}
-            LINE_CHAT_HISTORY_LENGTH : ${LINE_CHAT_HISTORY_LENGTH}            
+            LINE_CHANNEL_SECRET : ${LINE_CHANNEL_SECRET}
+            LINE_CHANNEL_ACCESS_TOKEN : ${LINE_CHANNEL_ACCESS_TOKEN}
+            LINE_CHAT_HISTORY_LENGTH : ${LINE_CHAT_HISTORY_LENGTH}
             WEATHERMAP_API_KEY : ${WEATHERMAP_API_KEY}
             COMFYUI_WS_ENDPOINT : ${COMFYUI_WS_ENDPOINT}
-            COMFYUI_WORKFLOW_PATH : ${COMFYUI_WORKFLOW_PATH}                  
-            LLM_BASE_URL : ${LLM_BASE_URL}
-            LLM_API_KEY : ${LLM_API_KEY}
-            LLM_MODEL_NAME : ${LLM_MODEL_NAME}
+            COMFYUI_WORKFLOW_PATH : ${COMFYUI_WORKFLOW_PATH}            
+            OPENAI_COMPATIBLE_API_BASE_URL : ${OPENAI_COMPATIBLE_API_BASE_URL}
+            OPENAI_COMPATIBLE_API_KEY : ${OPENAI_COMPATIBLE_API_KEY}
+            OPENAI_COMPATIBLE_API_MODEL_NAME : ${OPENAI_COMPATIBLE_API_MODEL_NAME}
             REDIS_HOST_ADDRESS : ${REDIS_HOST_ADDRESS}
             REDIS_HOST_PORT : ${REDIS_HOST_PORT}
-            GOOGLE_API_KEY : ${GOOGLE_API_KEY} #your_google_api_key
+            GOOGLE_SEARCH_API_KEY : ${GOOGLE_SEARCH_API_KEY} #your_google_api_key
             GOOGLE_CX : ${GOOGLE_CX} #your_custom_search_engine_id
             SEARCH_ENGINE : ${SEARCH_ENGINE}  # or "duckduckgo" "google"   
-            AWS_ACCESS_KEY_ID : ${AWS_ACCESS_KEY_ID}
-            AWS_SECRET_ACCESS_KEY : ${AWS_SECRET_ACCESS_KEY}
-            AWS_S3_URL_API : ${AWS_S3_URL_API}
-            AWS_S3_URL_WEBUI : ${AWS_S3_URL_WEBUI}
-            AWS_S3_BUCKET  : ${AWS_S3_BUCKET}             
-      
+            MINIO_ACCESS_KEY : ${MINIO_ACCESS_KEY}
+            MINIO_SECRET_KEY : ${MINIO_SECRET_KEY}
+            MINIO_URL_API : ${MINIO_URL_API}
+            MINIO_URL_WEBUI : ${MINIO_URL_WEBUI}
+            MINIO_BUCKET  : ${MINIO_BUCKET}                    
         restart: on-failure:5
 ```
 
