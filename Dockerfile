@@ -1,11 +1,11 @@
 # Stage 1: Build (using a full development environment)
-FROM python:3.12 AS builder
+FROM nikolaik/python-nodejs:python3.13-nodejs24-alpine AS builder
 RUN pip install --user some-package
 
 # Stage 2: Final run image (keep only necessary files)
-FROM python:3.12-slim
-COPY --from=builder /root/.local /root/.local
-ENV PATH=/root/.local/bin:$PATH
+# FROM python:3.12-slim
+# COPY --from=builder /root/.local /root/.local
+# ENV PATH=/root/.local/bin:$PATH
 
 # Copy the project into the container
 # COPY . /app

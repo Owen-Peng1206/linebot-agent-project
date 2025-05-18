@@ -38,16 +38,17 @@ This project is an intelligent customer service system built on the LINE platfor
 - __Aiohttp__ - Asynchronous HTTP client  
 - __Minio__ - Image data storage  
 - __Docker__ - Containerized deployment solution
+- __Google Maps search MCP server__ - Serarch google maps data by MCP server
 
 ## Setup
 
 1. Clone the repository to your local machine.
-   ```
+   ```bash
    git clone https://github.com/Owen-Peng1206/linebot-agent-project.git
    ```
 2. Setting your environment variables:
 
-   ```.env
+   ```bash
    LINE_CHANNEL_SECRET="YOUR_LINE_CHANNEL_SECRET"
    LINE_CHANNEL_ACCESS_TOKEN="YOUR_LINE_CHANNEL_ACCESS_TOKEN"
    LINE_CHAT_HISTORY_LENGTH="YOUR_LINE_CHAT_HISTORY_LENGTH" # e.g. 100
@@ -62,6 +63,7 @@ This project is an intelligent customer service system built on the LINE platfor
    GOOGLE_SEARCH_API_KEY="YOUR_GOOGLE_SEARCH_API_KEY" #your_google_api_key
    GOOGLE_CX="YOUR_GOOGLESEARCH_ENGINE_ID" #your_custom_search_engine_id
    SEARCH_ENGINE="YOUR_SEARCH_ENGINE"  # or "duckduckgo" "google"
+   GOOGLE_MAPS_API_KEY="YOUR_GOOGLE_MAPS_API_KEY" #your_google_maps_api_key
    MINIO_ACCESS_KEY="YOUR_MINIO_ACCESS_KEY" # e.g. 23TUJDWEJLKFRFGSBVSFGS
    MINIO_SECRET_KEY="YOUR_MINIO_SECRET_KEY" # e.g. cbci00kwhYiuIpIX0kWLKLJDHUGDFBKSdobT
    MINIO_URL_API="YOUR_MINIO_URL_API" # e.g. https://XXXAWS.YOUR_URL:443
@@ -98,11 +100,12 @@ This project is an intelligent customer service system built on the LINE platfor
 | generate_image | Generate images through ComfyUI        |
 | web_search     | Web search (e.g., Google/DuckDuckGo)   |
 | web_scrape     | Web content scraper                    |
+| Google Maps    | Seache Maps data form google maps      |
 
 ## Deployment Options
 
 ### Local development
-
+Only support docker or linux.
 ```bash
   uvicorn main:app --reload --host=0.0.0.0 --port=8001
 ```
@@ -110,31 +113,23 @@ This project is an intelligent customer service system built on the LINE platfor
 ### Docker depoly
 
 Dockfile example:
-```
-    # Stage 1: Build (using a full development environment)
-    FROM python:3.12 AS builder
-    RUN pip install --user some-package
+```bash
+# Stage 1: Build (using a full development environment)
+FROM nikolaik/python-nodejs:python3.13-nodejs24-alpine AS builder
+RUN pip install --user some-package
 
-    # Stage 2: Final run image (keep only necessary files)
-    FROM python:3.12-slim
-    COPY --from=builder /root/.local /root/.local
-    ENV PATH=/root/.local/bin:$PATH
+COPY *.py /app/
+COPY *.json /data/
+WORKDIR /app
 
-    # Copy the project into the container
-    # COPY ./app
-    COPY *.py /app/
-    COPY *.json /data/
-    WORKDIR /app
+# Install necessary packages
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-    # Install necessary packages
-    #RUN pip install --upgrade pip
-    COPY requirements.txt .
-    RUN pip install --no-cache-dir -r requirements.txt
+EXPOSE 8001
 
-    EXPOSE 8001
-    #CMD uvicorn main:app --host=0.0.0.0 --port=8080
-    # Run with uvicorn
-    CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8001"]
+# Run with uvicorn
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8001"]
 ```
 
 compose.yaml example:
@@ -161,7 +156,8 @@ compose.yaml example:
             REDIS_HOST_PORT : ${REDIS_HOST_PORT}
             GOOGLE_SEARCH_API_KEY : ${GOOGLE_SEARCH_API_KEY} #your_google_api_key
             GOOGLE_CX : ${GOOGLE_CX} #your_custom_search_engine_id
-            SEARCH_ENGINE : ${SEARCH_ENGINE}  # or "duckduckgo" "google"   
+            SEARCH_ENGINE : ${SEARCH_ENGINE}  # or "duckduckgo" "google"
+            GOOGLE_MAPS_API_KEY : ${GOOGLE_MAPS_API_KEY}   
             MINIO_ACCESS_KEY : ${MINIO_ACCESS_KEY}
             MINIO_SECRET_KEY : ${MINIO_SECRET_KEY}
             MINIO_URL_API : ${MINIO_URL_API}
@@ -198,7 +194,8 @@ docker-compose.yaml example:
             REDIS_HOST_PORT : ${REDIS_HOST_PORT}
             GOOGLE_SEARCH_API_KEY : ${GOOGLE_SEARCH_API_KEY} #your_google_api_key
             GOOGLE_CX : ${GOOGLE_CX} #your_custom_search_engine_id
-            SEARCH_ENGINE : ${SEARCH_ENGINE}  # or "duckduckgo" "google"   
+            SEARCH_ENGINE : ${SEARCH_ENGINE}  # or "duckduckgo" "google"
+            GOOGLE_MAPS_API_KEY : ${GOOGLE_MAPS_API_KEY}   
             MINIO_ACCESS_KEY : ${MINIO_ACCESS_KEY}
             MINIO_SECRET_KEY : ${MINIO_SECRET_KEY}
             MINIO_URL_API : ${MINIO_URL_API}

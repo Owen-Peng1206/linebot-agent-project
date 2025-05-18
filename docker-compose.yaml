@@ -22,7 +22,8 @@ services:
         REDIS_HOST_PORT : ${REDIS_HOST_PORT}
         GOOGLE_SEARCH_API_KEY : ${GOOGLE_SEARCH_API_KEY} #your_google_search_api_key
         GOOGLE_CX : ${GOOGLE_CX} #your_custom_search_engine_id
-        SEARCH_ENGINE : ${SEARCH_ENGINE}  # or "duckduckgo" "google"   
+        SEARCH_ENGINE : ${SEARCH_ENGINE}  # or "duckduckgo" "google" 
+        GOOGLE_MAPS_API_KEY : ${GOOGLE_MAPS_API_KEY}
         MINIO_ACCESS_KEY : ${MINIO_ACCESS_KEY}
         MINIO_SECRET_KEY : ${MINIO_SECRET_KEY}
         MINIO_URL_API : ${MINIO_URL_API}
